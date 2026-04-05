@@ -1,25 +1,25 @@
 #
 
 #CFLAGS =  -DEMACS -DCOMPAT_43
-CFLAGS = -g -DEMACS -DUNIX
+CFLAGS = -g -DEMACS -DUNIX -DG64
 
-all: gi
+all: gi64
 
 #
 #	GAME interpriter
 #
-OBJS =	ggii.o lined64.o linux.o
-SRCS =	ggii.c lined64.c linux.c
+OBJS =	ggii64.o lined64.o linux.o
+SRCS =	ggii64.c lined64.c linux.c
 ##OBJS =	ggii.o lined.o bsd.o
 ##SRCS =	ggii.c lined.c bsd.c
 #OBJS =	ggii.o  bsd.o
 #SRCS =	ggii.c  bsd.c
 
-gi: ${OBJS}
-	${CC} ${CFLAGS} -o gi ${OBJS}
+gi64: ${OBJS}
+	${CC} ${CFLAGS} -o gi64 ${OBJS}
 
-ggii.o:	ggii.c
-	${CC} ${CFLAGS} -c ggii.c
+ggii64.o:	ggii64.c
+	${CC} ${CFLAGS} -c ggii64.c
 
 lined64: lined64.c
 	${CC} ${CFLAGS} -DTEST -o lined64 lined64.c linux.o
