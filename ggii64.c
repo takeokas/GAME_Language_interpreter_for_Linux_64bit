@@ -17,6 +17,7 @@ u_char text_buf[10000];
 #define Int long long
 
 extern void xgets(u_char*, int);
+extern void xxgets(u_char*, int);
 extern void xputs(u_char*);
 extern void crlf();
 extern Int pop();
@@ -141,9 +142,10 @@ main()
 		lno=0;
 /*		printf("BTMP=%x\n",BTMP); /**/
 		*lin='\0';
+		//crlf();
  reenter:
-		crlf();xputs("G>>");
-		xgets(lin,LINBUF0SIZ);
+		xputs("G>>");
+		xxgets(lin,LINBUF0SIZ);
 		crlf();
 		*(lin+strlen(lin)+1) = 0x80; /* EOF on endOfLinebuf*/
 		pc=lin;
@@ -155,8 +157,10 @@ main()
 				Int f;
 				u_char *p;
 				p=searchLine(n, &f);
+				///printf(" searchLine:f=%lld\r\n",f);
 				if(f==0) continue;
 				p=makeLine(p);
+				///printf(" makeLine:p=%s\r\n",p);
 				strcpy(lin,p);
 				goto reenter;
 			}
@@ -317,7 +321,8 @@ topOfLine()
 more:
 	x= *pc++;
 	if(x & 0x80){
-		xputs("\nat EOF ");
+		//xputs("\nat EOF ");
+		crlf();
 		longjmp(toplvl,1);
 	}
 	lno = (x <<8)| *pc++;

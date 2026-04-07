@@ -10,15 +10,15 @@
 #define u_short unsigned short
 #define u_int unsigned int
 
-#ifdef B64
+#ifdef G64
 #define Int long long
 #define u_Int unsigned long long
-#endif /* B64 */
+#endif /* G64 */
 
-#ifdef B32
+#ifdef G32
 #define Int long
 #define u_Int unsigned long
-#endif /* B32 */
+#endif /* G32 */
 
 #define Byte8 long long
 #define Byte4 int
